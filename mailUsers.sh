@@ -1,8 +1,16 @@
 #!/bin/bash
 
-#if not root then exit
-
+#check if the user is root
+if [ $USER != 'root' ]; then
+   echo "Must run as root"    
+   exit 1        
+fi
 #check if the csi230 group is created
+if [ $(getent group CSI230) ]; then
+   echo "CSI230 Is already a group"
+else
+   echo "creating group CSI230"
+fi
 
 #if the emails arent already users Create usernames by grabbing the first section of the email
 
